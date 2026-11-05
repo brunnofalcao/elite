@@ -57,9 +57,6 @@ h1 .marca{background:var(--marca);color:var(--ink);padding:0 .14em .04em;display
 .bonus div{background:var(--cartao);color:var(--ink);border-radius:8px;padding:20px}
 .bonus b{display:block;font-family:Fraunces,Georgia,serif;font-size:22px;line-height:1.15;margin-bottom:6px}
 .bonus p{font-size:15px;color:var(--plapis)}
-.alumni{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;background:rgba(242,179,42,.1);border:1px solid rgba(242,179,42,.5);border-radius:10px;padding:20px}
-.alumni p{max-width:56ch}
-.alumni .btn{margin-top:0;background:var(--tinta);color:var(--ink)}
 .prova{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 @media(min-width:760px){.prova{grid-template-columns:repeat(4,1fr)}}
 .prova b{display:block;font-family:Fraunces,Georgia,serif;font-size:36px;line-height:1}
@@ -116,7 +113,7 @@ fbq('init','460696430970324');fbq('track','PageView');fbq('track','ViewContent',
           <li>Arsenal de IA, replay vitalício e o ELITE dos últimos 2 anos</li>
           <li>Bag premium com caderno, workbook e produtos</li>
         </ul>
-        <a class="btn" data-ing="vip" data-valor="7997" href="#">Garantir o VIP no Lote Zero</a>
+        <a class="btn" data-ing="vip" data-valor="7997" href="https://pay.hotmart.com/T108262282L?off=47jehgmh&checkoutMode=10">Garantir o VIP no Lote Zero</a>
       </div>
     </article>
     <article class="ing">
@@ -131,7 +128,7 @@ fbq('init','460696430970324');fbq('track','PageView');fbq('track','ViewContent',
           <li>Arsenal de IA por 3 meses e replay por 12 meses</li>
           <li>O ELITE dos últimos 2 anos, até a data do evento</li>
         </ul>
-        <a class="btn" data-ing="ouro" data-valor="3997" href="#">Garantir o Ouro no Lote Zero</a>
+        <a class="btn" data-ing="ouro" data-valor="3997" href="https://pay.hotmart.com/T108262282L?off=eq0yjim0&checkoutMode=10">Garantir o Ouro no Lote Zero</a>
       </div>
     </article>
     <article class="ing">
@@ -144,7 +141,7 @@ fbq('init','460696430970324');fbq('track','PageView');fbq('track','ViewContent',
           <li>Coffee break e workbook impresso</li>
           <li>Replay por 30 dias</li>
         </ul>
-        <a class="btn" data-ing="prata" data-valor="1997" href="#">Garantir o Prata no Lote Zero</a>
+        <a class="btn" data-ing="prata" data-valor="1997" href="https://pay.hotmart.com/T108262282L?off=uf53sgjn&checkoutMode=10">Garantir o Prata no Lote Zero</a>
       </div>
     </article>
     <article class="ing">
@@ -157,7 +154,7 @@ fbq('init','460696430970324');fbq('track','PageView');fbq('track','ViewContent',
           <li>Replay por 30 dias e workbook digital</li>
           <li>Se decidir ir à sala, troca pelo presencial abatendo o que já pagou</li>
         </ul>
-        <a class="btn" data-ing="online" data-valor="797" href="#">Garantir o Online no Lote Zero</a>
+        <a class="btn" data-ing="online" data-valor="797" href="https://pay.hotmart.com/T108262282L?off=bs8fji3a&checkoutMode=10">Garantir o Online no Lote Zero</a>
       </div>
     </article>
   </section>
@@ -168,13 +165,6 @@ fbq('init','460696430970324');fbq('track','PageView');fbq('track','ViewContent',
       <div><b>Raio-X de perfil</b><p>Uma análise do seu perfil, para ele transmitir a autoridade que você já tem.</p></div>
       <div><b>Kit de 90 dias de pautas</b><p>O que postar nos próximos três meses, pronto para gravar.</p></div>
       <div><b>Roteiros de conversão</b><p>Para WhatsApp e direct, do primeiro contato até a consulta.</p></div>
-    </div>
-  </section>
-
-  <section class="bloco so-ativo">
-    <div class="alumni">
-      <p><span class="mao">formado no PALESTRE•SE?</span><br>No Lote Zero, o VIP sai por R$ 4.997 para alumni, com 25 lugares.</p>
-      <a class="btn" data-ing="alumni" data-valor="4997" href="#">Garantir o VIP de alumni</a>
     </div>
   </section>
 
@@ -194,22 +184,11 @@ fbq('init','460696430970324');fbq('track','PageView');fbq('track','ViewContent',
 </div>
 
 <script>
-/* ===== CONFIGURAÇÃO: cole aqui os links de checkout do Lote Zero ===== */
-var CHECKOUT = {
-  vip:    'COLE_AQUI_O_CHECKOUT_VIP',
-  ouro:   'COLE_AQUI_O_CHECKOUT_OURO',
-  prata:  'COLE_AQUI_O_CHECKOUT_PRATA',
-  online: 'COLE_AQUI_O_CHECKOUT_ONLINE',
-  alumni: 'COLE_AQUI_O_CHECKOUT_VIP_ALUMNI'
-};
 var LIMITE = '2026-11-05T23:59:59-03:00';
-/* ===================================================================== */
 (function () {
-  var qs = location.search.replace(/^\?/, '');
+  var qs = location.search.replace(/^\?/, '').replace(/(^|&)teste=fim/, '');
   document.querySelectorAll('a[data-ing]').forEach(function (a) {
-    var url = CHECKOUT[a.getAttribute('data-ing')] || '';
-    if (!url || url.indexOf('COLE_AQUI') === 0) { a.removeAttribute('href'); a.style.opacity = '.55'; return; }
-    a.href = qs ? url + (url.indexOf('?') > -1 ? '&' : '?') + qs : url;
+    if (qs) a.href = a.href + '&' + qs;
     a.addEventListener('click', function () {
       if (window.fbq) fbq('track', 'InitiateCheckout', { content_name: 'ELITE 2027 ' + a.getAttribute('data-ing') + ' Lote Zero', value: Number(a.getAttribute('data-valor')), currency: 'BRL' });
     });
